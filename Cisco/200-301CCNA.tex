@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage{enumitem}
+
+\title{CCNA Study Guide}
+\author{Alexander}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+  \item Network Fundamentals (20\%)
+  \item Network Access (20\%)
+  \item IP Connectivity (25\%)
+  \item IP Services (10\%)
+  \item Security Fundamentals (15\%)
+  \item Automation and Programmability (10\%)\\
+\end{enumerate}
+
+
+
+\begin{flushleft}\textbf{Network Fundamentals}\end{flushleft}
+\begin{itemize}
+  \item Explain the role and function of network components
+  
+	\begin{description}\item Routers forward packets between computer networks (LANs and WANs), and use IP addresses to determine where the packet should go.\end{description}
+
+	\begin{description}\item L2 switches forward data frames within the same network segment using MAC addresses. L3 switches can perform switching functions in addition to routing functions. \end{description}
+
+	\begin{description}\item Firewalls sit in the path that packets take through the network. They permit/deny traffic much like an ACL would do on a router. Firewalls are capable of watching application-layer flows with AVC, performing webpage verification on URIs, and retaining state. IPSs can compare packet flows to exploit signatures, log events, and can discard/redirct packets. \end{description}
+
+	\begin{description}\item \end{description}
+
+  \item Describe characteristics of network topology architectures
+  \item Compare physical interface and cabling types
+  \item Identify interface and cable issues (collisions, error, mismatch duplex, and/or speed)
+  \item Compare TCP to UDP
+  \item Configure and verify IPv4 addressing and subnetting
+  \item Describe private IPv4 addressing
+  \item Describe IPv6 addressing and prefix
+  \item Verify IP parameters for Client OS
+  \item Describe wireless principles
+  \item Explain virtualization fundamentals (server virtualization, containers, and VRFs)
+  \item Describe switching concepts\\
+\end{itemize}
+
+
+
+\begin{flushleft}\textbf{Network Access}\end{flushleft}
+\begin{itemize}
+  \item Configure and verify VLANs (normal range) spanning multiple switches
+  \item Configure verify interswitch connectivity
+  \item Configure and verify L2 discovery protocols (CDP/LLDP)
+  \item Configure and verify (L2/L3) EtherChannel (LACP)
+  \item Interpret basic operations of Rapid PVST+ Spanning Tree Protocol
+  \item Describe Cisco Wireless Architectures and AP modes
+  \item Describe physical infrastructure connections of WLAN components (AP, WLC, access/trunk ports, and LAG)
+  \item Describe network device management access (Telnet, SSH, HTTP, HTTPS, console, TACACS+/RADIUS, and cloud managed)
+  \item Interpret the wireless LAN GUI configuration for client connectivity, such as WLAN creation, security settings, QoS profiles, and advanced settings\\
+\end{itemize}
+
+
+
+\begin{flushleft}\textbf{IP Connectivity}\end{flushleft}
+\begin{itemize}
+  \item Interpret the compnents of routing table
+  \item Determine how a router makes a forwarding decision by default
+  \item Configure and verify IPv4 and IPv6 static routing 
+  \item Configure and verify single area OSPFv2
+  \item Describe the purpose, functions, and concepts of first hop redundancy protocols\\
+\end{itemize}
+
+
+
+\begin{flushleft}\textbf{IP Services}\end{flushleft}
+\begin{itemize}
+  \item Configure and verify inside source NAT using static and pools
+  \item Configure and verify NTP operating in a client and server mode
+  \item Explain the role of DHCP and DNS within the network
+  \item Explain the function of SNMP in network operations
+  \item Describe the use of syslog features including facilities and levels
+  \item Configure and verify DHCP client and relay
+  \item Explain the forwarding per-hop behavior (PHB) for QoS, such as classification, marking, queuing, congestion, policing, and shaping
+  \item Configure network devices for remote access using SSH
+  \item Describe the capabilities and functions of TFTP/FTP in the network\\
+\end{itemize}
+
+
+
+\begin{flushleft}\textbf{Security Fundamentals}\end{flushleft}
+\begin{itemize}
+  \item Define key security concepts (threats, vulnerabilities, exploits, and mitigation techniques)
+  \item Describe security program elements (user awareness, training, and physical access control)
+  \item Configure and verify device access control using local passwords
+  \item Describe security password policies elements, such as management, complexity, and password alternatives (multifactor authentication, certificates, and biometrics)
+  \item Describe IPsec remote access and site-to-site VPNs
+  \item Configure and verify access control lists
+  \item Configure and verify Layer 2 security features (DHCP snooping, dynamic ARP inspection, and port security)
+  \item Compare authentication, authorization, and accounting concepts
+  \item Describe wireless security protocols (WPA, WPA2, and WPA3)
+  \item Configure and verify WLAN within the GUI using WPA2 PSK\\
+\end{itemize}
+
+
+
+\begin{flushleft}\textbf{Automation and Programmability}\end{flushleft}
+\begin{itemize}
+  \item Explain how automation impacts network management
+  \item Compare traditional networks with controller-based networking
+  \item Describe controller-based, software defined architecture (overlay, underlay, and fabric) 
+  \item Explain AI (generative and predictive) and machine learning in network operations
+  \item Describe characteristics of REST-based APIs (authentication types, CRUD, HTTP verbs, and data encoding)
+  \item Recognize the capabilities of configuration management mechanisms, such as Ansible and Terraform
+  \item Recognize components of JSON-encoded data\\
+\end{itemize}
+
+\end{document}
