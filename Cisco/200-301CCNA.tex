@@ -22,8 +22,8 @@
 \begin{flushleft}\textbf{Network Fundamentals}\end{flushleft}
 \begin{itemize}
   \item Explain the role and function of network components
-  	\item[] Routers forward packets between computer networks (LANs and WANs), and use IP addresses to determine where the packet should go.
-	\item[] L2 switches forward data frames within the same network segment using MAC addresses. L3 switches can perform switching functions in addition to routing functions.
+  	\item[] Routers forward packets between computer networks (LANs and WANs), and use IP addresses to determine where a packet should go. Routers remove data-link headers and trailers, analyze packet information, and then re-encapsulate the data with a new data-link frame before transmission. Routers compare destination IPs, found inside packet headers, to routes in routing tables before forwarding packets. Routing tables get their routes from static routes, dynamic routing protocols, and source headers fields found in packets recieved on local interfaces. Routers can perform many different actions: implementing QoS tools, permiting/denying packets with ACLs, performing firewall functions, advertising BSSs, and more. 
+	\item[] L2 switches forward data frames within the same network segment using MAC addresses found in data-link frames. Switches learn MAC addresses from the source fields located in the frame and place this information in a table. Switches divide collision domains; unlike routers, which divide broadcast domains. L3 switches can perform both switching and routing functions.
 	\item[] Firewalls sit in the path that packets take through the network. They permit/deny traffic much like an ACL would do on a router. Firewalls are capable of watching application-layer flows with AVC, performing webpage verification on URIs, and retaining state. IPSs can compare packet flows to exploit signatures, log events, and can discard/redirct packets.
 	\item[] An AP serves as a single point of contact for every device that wants to use a BSS. An AP uses a unique BSSID that is based on the AP's own radio MAC address. APs are often connected to a DS that uplinks to a wired network.
   \item Describe characteristics of network topology architectures
@@ -49,41 +49,53 @@
 \begin{flushleft}\textbf{Network Access}\end{flushleft}
 \begin{itemize}
   \item Configure and verify VLANs (normal range 0-1005) spanning multiple switches
-	\item[] 
+	\item[] 1. create vlan, 2. port operational mode, 3. apply port\\
 		Switch(config)\# vlan \textless vlan-id\textgreater\\
 		Switch(config-if)\# switchport mode access\\
 		Switch(config-if)\# switchport access vlan \textless vlan-id\textgreater
-  	\item[] 
-  		Switch\# show vlan\\
+  	\item[] troubleshoot: VLANs defined/active, configuration mismatches, VTP, DTP, operational mode\\
+  		Switch\# show vlan [brief]\\
+  		Switch\# show interface interface\_type interface\_number [brief]\\
+  		Switch\# show interfaces status\\
+  		Switch\# show run
   	
   \item Configure and verify interswitch connectivity
-  	\item[] 
+  	\item[] 1. operational mode, 2. allowed vlans, 3. trunking standard, 4. native vlan\\
   		Switch(config-if)\# switchport mode trunk\\
   		Switch(config-if)\# switchport trunk allowed vlan \textless 10,20,30\textgreater\\
   		Switch(config-if)\# switchport tunk encapsulation \textless dot1q/isl\textgreater\\
   		Switch(config-if)\# switchport trunk native vlan \textless vlan-id\textgreater
-  	\item[] 
+  	\item[] troubleshoot: VLANs defined/active, configuration mismatches, VTP, DTP, operational mode \\
   		Switch\# show interface trunk\\
-  		Switch\# show interface interface\_type interface\_number\\
+  		Switch\# show interfaces switchport\\
+  		Switch\# show interface interface\_name interface\_number
   		
   \item Configure and verify L2 discovery protocols (CDP/LLDP)
-  	\item[] 
-  		Switch(config)\# \textless cdp/lldp\textgreater run\\
-  		Switch\# show \textless cdp/lldp\textgreater neighbors\\
-  		
+  	\item[] CDP: device IDs, addresses, ports, capabilities, platform, etc.\\
+  		Switch(config-if)\# cdp enable (enable cdp on an interface)\\
+  		Switch(config)\# cdp run (how to manually enable it gloablly)\\
+  		Switch\# show cdp neighbors \textless interface\_type\textgreater \textless interface\_number\textgreater (one summary line about the neighbor)\\
+  		Switch\# show cdp neighbors detail (lists one large set of information)\\
+  		Switch\# show cdp entry name (similar to the command above, but only for the named neighbor)\\
+  		Switch\# show cdp interface \textless interface\_type \textgreater \textless interface\_number\textgreater (is cdp enabled, cdp timers)\\
+  		Switch\# show cdp (is cdp enabled, timer details)\\
+  		Switch\# show cdp traffic (advertisment stats)
+  	\item[] LLDP: Cisco devices globally enable CDP by default and disable LLDP\\
+  		Switch(config)\# lldp run\\
+  		Switch(config-if)\# lldp transmit\\
+  		Switch(config-if)\# lldp receive
   \item Configure and verify (L2/L3) EtherChannel (LACP)
-	\item[] Manual
+	\item[] Manual Configuration:\\
 		Switch(config-if-range)\# channel-group 1 mode on
-	\item[] Dynamic
+		Switch(config)\# port-channel load-balance method (src. and or dest. MACs/IPs/port numbers)
+	\item[] Dynamic Congifuration:\\
 		Switch(config-if-range)\# channel-group 1 mode \textless desirable/auto\textgreater (PAgP)\\
 		Switch(config-if-range)\# channel-group 1 mode \textless active/passive\textgreater (LACP)
-	\item[] you can load balance by source and/or destination MACs, IPs, or ports
-		Switch(config)\# port-channel load-balance method 
-	\item[] Etherchannels are dependent on many other items: speed, duplex, operational mode, VLANs, STP
-		Switch\# show etherchannel summary
+	\item[] troubleshoot: speed, duplex, operational mode, VLANs, Spanning Trees\\
+		Switch\# show etherchannel summary\\
 		Switch\# show interfaces status
-	\item[] L3 Etherchannel configuration is similar to L2 configuration however:
-		1. each physical port need to be a routed port (no switchport command)\\
+	\item[] L3 Etherchannel configuration is similar to L2 configuration however:\\
+		1. each physical port needs to be a routed port (no switchport command)\\
 		2. the actually channel needs to be a routed port with an IP and mask\\
   \item Interpret basic operations of Rapid PVST+ Spanning Tree Protocol
   \item Describe Cisco Wireless Architectures and AP modes
@@ -98,8 +110,25 @@
 \begin{itemize}
   \item Interpret the compnents of routing table
   \item Determine how a router makes a forwarding decision by default
-  \item Configure and verify IPv4 and IPv6 static routing 
+  \item Configure and verify IPv4 and IPv6 static routing
+  	\item[] Default routes are used when a packet's destination address does not match any routes, but you do not want the router to discard a packet that it otherwise would.\\
+  		Router(config)\# ip route 0.0.0.0 0.0.0.0 interface\_name interface\_number\\
+  	\item[] Network routes define a route to an entire subnet.\\
+  		Router(config)\# ip route 172.16.2.0 255.255.255.0 s0/0/0\\
+  		Router(config)\# ip route 172.16.3.0 255.255.255.0 172.16.5.3
+  	\item[] Host routes match a single IP. An engineer may want to route most packets to some subnet through one route but packets destined for a specific host through another route.\\
+  		Router(config)\# ip route 10.1.1.9 255.255.255.255 10.9.9.9
+  	\item[] Floating static routes are used when when a primary route fails.\\
+  		Router(config)\# ip route 172.16.2.0 255.255.255.0 172.16.5.3 130
   \item Configure and verify single area OSPFv2
+  	\item[] OSPF Configuration Mode:\\
+  		Router(config)\# router ospf \textless 1-65535\textgreater\\
+  		Router(config-router)\# router-id 1.1.1.1 (OPTIONAL)\\
+  		Router(config-router)\# network \textless ip\_address\textgreater \textless network\_mask\textgreater
+  	\item[] Indirect Configuration Through Interface Mode:\\
+  		Router(config-if)\# ip address 10.1.1.1 255.255.255.0\\
+  		Router(config-if)\# ip ospf 1 area 0
+  	\item[] Show commands:
   \item Describe the purpose, functions, and concepts of first hop redundancy protocols\\
 \end{itemize}
 
