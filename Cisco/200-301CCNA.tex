@@ -22,19 +22,21 @@
 \begin{flushleft}\textbf{Network Fundamentals}\end{flushleft}
 \begin{itemize}
   \item Explain the role and function of network components
-  
   	\item[] Routers forward packets between computer networks (LANs and WANs), and use IP addresses to determine where the packet should go.
-
 	\item[] L2 switches forward data frames within the same network segment using MAC addresses. L3 switches can perform switching functions in addition to routing functions.
-
 	\item[] Firewalls sit in the path that packets take through the network. They permit/deny traffic much like an ACL would do on a router. Firewalls are capable of watching application-layer flows with AVC, performing webpage verification on URIs, and retaining state. IPSs can compare packet flows to exploit signatures, log events, and can discard/redirct packets.
-
+	\item[] An AP serves as a single point of contact for every device that wants to use a BSS. An AP uses a unique BSSID that is based on the AP's own radio MAC address. APs are often connected to a DS that uplinks to a wired network.
   \item Describe characteristics of network topology architectures
   \item Compare physical interface and cabling types
   \item Identify interface and cable issues (collisions, error, mismatch duplex, and/or speed)
   \item Compare TCP to UDP
   \item Configure and verify IPv4 addressing and subnetting
+  	\item[] Router(config-if)\# ip address \textless ip\_address\textgreater\ \textless subnet\_mask\textgreater
+  	\item[] Router\# show ip interface brief\\
   \item Describe private IPv4 addressing
+  \item Configure and verify IPv6 address types
+  	\item[] Router(config-if)\# ipv6 address \textless IPv6\_address\textgreater/\textless prefix\_length\textgreater
+  	\item[] Router\# show ipv6 interface brief\\
   \item Describe IPv6 addressing and prefix
   \item Verify IP parameters for Client OS
   \item Describe wireless principles
@@ -46,10 +48,43 @@
 
 \begin{flushleft}\textbf{Network Access}\end{flushleft}
 \begin{itemize}
-  \item Configure and verify VLANs (normal range) spanning multiple switches
-  \item Configure verify interswitch connectivity
+  \item Configure and verify VLANs (normal range 0-1005) spanning multiple switches
+	\item[] 
+		Switch(config)\# vlan \textless vlan-id\textgreater\\
+		Switch(config-if)\# switchport mode access\\
+		Switch(config-if)\# switchport access vlan \textless vlan-id\textgreater
+  	\item[] 
+  		Switch\# show vlan\\
+  	
+  \item Configure and verify interswitch connectivity
+  	\item[] 
+  		Switch(config-if)\# switchport mode trunk\\
+  		Switch(config-if)\# switchport trunk allowed vlan \textless 10,20,30\textgreater\\
+  		Switch(config-if)\# switchport tunk encapsulation \textless dot1q/isl\textgreater\\
+  		Switch(config-if)\# switchport trunk native vlan \textless vlan-id\textgreater
+  	\item[] 
+  		Switch\# show interface trunk\\
+  		Switch\# show interface interface\_type interface\_number\\
+  		
   \item Configure and verify L2 discovery protocols (CDP/LLDP)
+  	\item[] 
+  		Switch(config)\# \textless cdp/lldp\textgreater run\\
+  		Switch\# show \textless cdp/lldp\textgreater neighbors\\
+  		
   \item Configure and verify (L2/L3) EtherChannel (LACP)
+	\item[] Manual
+		Switch(config-if-range)\# channel-group 1 mode on
+	\item[] Dynamic
+		Switch(config-if-range)\# channel-group 1 mode \textless desirable/auto\textgreater (PAgP)\\
+		Switch(config-if-range)\# channel-group 1 mode \textless active/passive\textgreater (LACP)
+	\item[] you can load balance by source and/or destination MACs, IPs, or ports
+		Switch(config)\# port-channel load-balance method 
+	\item[] Etherchannels are dependent on many other items: speed, duplex, operational mode, VLANs, STP
+		Switch\# show etherchannel summary
+		Switch\# show interfaces status
+	\item[] L3 Etherchannel configuration is similar to L2 configuration however:
+		1. each physical port need to be a routed port (no switchport command)\\
+		2. the actually channel needs to be a routed port with an IP and mask\\
   \item Interpret basic operations of Rapid PVST+ Spanning Tree Protocol
   \item Describe Cisco Wireless Architectures and AP modes
   \item Describe physical infrastructure connections of WLAN components (AP, WLC, access/trunk ports, and LAG)
