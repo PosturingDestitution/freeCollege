@@ -55,7 +55,7 @@
 		Switch(config-if)\# switchport access vlan \textless vlan-id\textgreater
   	\item[] verify: defined/active VLANs, VTP, access ports(data and voice)\\
   		Switch\# show vlan [brief]\\
-  		Switch\# show interface interface\_type interface\_number [brief]\\
+  		Switch\# show interface \textless interface\textgreater [brief]\\
   		Switch\# show interfaces status\\
   		Switch\# show run
   	
@@ -68,7 +68,7 @@
   	\item[] verify: VLANs, native VLAN, VTP, DTP, operational mode \\
   		Switch\# show interface trunk\\
   		Switch\# show interfaces switchport\\
-  		Switch\# show interface interface\_name interface\_number
+  		Switch\# show interface \textless interface\textgreater
   		
   \item \textbf{Configure and verify L2 discovery protocols (CDP/LLDP)}
   	\item[] CDP: multicast address 0100.0ccc.cccc\\
@@ -77,13 +77,14 @@
   		Switch(config)\# cdp timer seconds\\
   		Switch(config)\# cdp holdtime seconds
   	\item[] verify$\downarrow$\\
-  		Switch\# show cdp neighbors \textless interface\textgreater\\
-  		Switch\# show cdp neighbors detail\\
-  		Switch\# show cdp entry name\\
-  		Switch\# show cdp interface \textless interface\textgreater\\
   		Switch\# show cdp\\
-  		Switch\# show cdp traffic
+  		Switch\# show cdp traffic\\
+  		Switch\# show cdp \textless interface\textgreater\\
+  		Switch\# show cdp neighbors\\
+  		Switch\# show cdp neighbors detail\\
+  		Switch\# show cdp entry name
   	\item[] LLDP(802.1AB): multicast address 0180.c200.000e\\
+  		Switch(config-if)\# lldp enable\\
   		Switch(config)\# lldp run\\
   		Switch(config-if)\# lldp transmit\\
   		Switch(config-if)\# lldp receive\\
@@ -100,7 +101,7 @@
   \item \textbf{Configure and verify (L2/L3) EtherChannel (LACP)}
 	\item[] Manual Configuration$\downarrow$\\
 		Switch(config-if-range)\# channel-group 1 mode on\\
-		Switch(config)\# port-channel load-balance method (src. and or dest. MACs/IPs/port numbers)
+		Switch(config)\# port-channel load-balance method
 	\item[] Dynamic Congifuration$\downarrow$\\
 		Switch(config-if-range)\# channel-group 1 mode \textless desirable/auto\textgreater (PAgP)\\
 		Switch(config-if-range)\# channel-group 1 mode \textless active/passive\textgreater (LACP)
@@ -153,14 +154,13 @@
   	\item[] OSPF default routes work like normal default routes, but can be advertised via OSPF\\
   		Router(config-router)\# default-information originate
   	\item[] OSPF cost = reference / bandwidth\\
-  		Router(config-if)\# ip ospf cost cost (explicitly set cost value 1-65535)\\
-  		Router(config-router)\# auto-cost reference (alters the cost calulation)\\
+  		Router(config-if)\# ip ospf cost cost\\
+  		Router(config-router)\# auto-cost reference\\
   		Router(config-if)\# speed 100\\
-  		(affects the actual speed at which data is transmitted an recieved on the interface)\\
   		Router(config-if)\# bandwidth 10000\\
-  		(in scenarios where the actual bandwidth of the interface differs from the default assumption made by the routing protocol)\\
+  		NOTE: the bandwidth command is used in scenarios where the actual bandwidth of the interface differs from the default assumption made by the routing protocol.\\
   		Router(config-if)\# clock\\
-  		(configured on the DCE end of a serial link to provide clocking for the line)
+  		NOTE: the clock command is normally configured on the DCE end of a serial link to provide clocking for the line.
   	\item[] OSPF route summarization involves aggregating multiple contiguous network addresses into a single summary route advert.\\
   		NOTE: Route summarization should be done at the netwrok boundary to avoid potential routing issues. Also, make sure that summarized routes cover all the individual routes being summarized.\\
   		Router(config-router)\# area 0 range \textless IP\_address\textgreater \textless subnet\_mask\textgreater
@@ -177,7 +177,7 @@
   		Router(config)\# show ip ospf interface \textless interface\textgreater (enabled interfaces)\\
   		Router(config)\# show ip ospf interface brief (enabled interfaces)\\
   		
-  		Router(config)\# show ip ospf neighbor (neighbors)
+  		Router(config)\# show ip ospf neighbor (neighbors)\\
   		Router(config)\# show ip ospf neighbor \textless interface\textgreater (neighbors)\\
   		
   		Router(config)\# show ip ospf database (lsdb)\\
@@ -199,7 +199,7 @@
   	\item[] Static NAT\\
 		Router(config-if)\# ip nat inside\\
 		Router(config-if)\# ip nat outside\\
-		Router(config)\# ip nat inside source static \textless inside\-local\textgreater \textless inside\-local\textgreater
+		Router(config)\# ip nat inside source static \textless inside\-local\textgreater \textless outside\-local\textgreater
 	\item[] Dynamic NAT\\
 		Router(config)\# ip nat pool mypool 203.0.113.20 203.0.113.30 netmask 255.255.255.0\\
 		Router(config)\# access-list 1 permit 192.168.1.0 0.0.0.255\\
@@ -213,10 +213,11 @@
 		R1\# show interfaces \textless interface\textgreater
 		
   \item \textbf{Configure and verify NTP operating in a client and server mode}
+  	\item[] NOTE: the time-range command can be used to set maintenance windows\\
   	\item[] software clock$\downarrow$\\
-		Router\# clock set hh:mm:ss {day|month} {month|day} year
+		Router\# clock set hh:mm:ss month day year
 	\item[] hardware clock$\downarrow$\\
-		Router\# calendar set hh:mm:ss {day|month} {day|month} year
+		Router\# calendar set hh:mm:ss date dd month
 	\item[] timezones$\downarrow$\\
 		Router(config)\# clock timezone name hours-offset [minutes-offset]
 	\item[] daylight savings$\downarrow$\\
@@ -245,11 +246,11 @@
   	\item[] DHCP relay is used to help move DHCP messages in/out of a segment\\
 		Router(config-if)\# ip helper-address 192.168.1.100
 	\item[] show commands $\downarrow$\\
-		show ip dhcp binding\\
-		show ip dhcp pool\\
-		show ip dhcp server statistics\\
-		show ip dhcp relay\\
-		ipconfig or ifconfig (verify clients DHCP information)
+		R1\# show ip dhcp binding\\
+		R1\# show ip dhcp pool\\
+		R1\# show ip dhcp server statistics\\
+		R1\# show ip dhcp relay\\
+		ipconfig/ifconfig (verify clients DHCP information)
   \item \textbf{Explain the forwarding per-hop behavior (PHB) for QoS, such as classification, marking, queuing, congestion, policing, and shaping}
   \item \textbf{Configure network devices for remote access using SSH}
   	\item[] 1. enable SSH 2. create user accounts 3. set parameters 4. access control (OPTIONAL)\\
@@ -299,20 +300,20 @@
   		Router(config-ext-nacl)\# permit tcp host 10.1.1.2 eq www any\\
   		Router(config-ext-nacl)\# interface serial1\\
   		Router(config-if)\# ip access-gorup barney out
-  	\item[] verify:\\
+  	\item[] verify$\downarrow$\\
   		Place standard ACLs as close to the destination as possible.\\
   		Place extended ACLs as close to the source as possible.\\
   		Disable an ACL before altering the ACEs.
   		
   		
-  	\item[] NOTE: helpful arithmetic $\downarrow$\\
+  	\item[] some arithmetic $\downarrow$\\
   		subnet = host address \&(binary and) mask\\ 
   		wildcard mask = limited broadcast address - subnet mask\\
   		subnet(highend) = subnet(lowend) + wildcard\\
   		0d $\rightarrow$ 0b $\downarrow$\\
   		1. continue to divide by 2\\
   		2. each division set aside the remainder\\
-  		3. once the quotient is 0, merge the remainders in reverse order
+  		3. once the quotient is 0, merge the remainders in reverse order\\
   		0x $\rightarrow$ 0d $\downarrow$\\
   		1. separate the digits and convert them to decimal digits\\
   		2. multiply each digit by the respective power of 16\\
@@ -330,15 +331,14 @@
 		verify$\downarrow$\\
 		Switch\# show ip dhcp snooping\\
 		Switch\# show ip dhcp snooping binding
-  	\item[] dynamic ARP inspection is used prevent ARP spoofing/poisoning\\
+  	\item[] Dynamic ARP inspection is used prevent ARP spoofing/poisoning\\
   		Switch(config)\# ip arp inspection\\
 		Switch(config)\# ip arp inspection vlan \textless vlan\_id\textgreater\\
 		Switch(config-if)\# ip arp inspection trust
 		verify$\downarrow$
 		Switch\# show ip arp inspection\\
-		Switch\# show ip arp inspection statistics\\
-		
-  	\item[] port security is used to keep unauthorized devices from accessing the network\\
+		Switch\# show ip arp inspection statistics
+  	\item[] Port security is used to keep unauthorized devices from accessing the network.\\
   		Switch(config-if)\# switchport port-security\\
 		Switch(config-if)\# switchport port-security maximum \textless value\textgreater\\
 		Switch(config-if)\# switchport port-security violation {shutdown | restrict | protect}\\
