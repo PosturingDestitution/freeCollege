@@ -1,11 +1,13 @@
 \documentclass{article}
 \usepackage{enumitem}
+\usepackage{amsmath}
 
 \title{CCNA Study Guide}
 \author{Alexander}
 \date{\today}
 
 \begin{document}
+
 \maketitle
 
 \begin{enumerate}
@@ -21,106 +23,130 @@
 
 \begin{flushleft}\textbf{Network Fundamentals}\end{flushleft}
 \begin{itemize}
-  \item Explain the role and function of network components
+  \item \textbf{Explain the role and function of network components}
   	\item[] Routers forward packets between computer networks (LANs and WANs), and use IP addresses to determine where a packet should go. Routers remove data-link headers and trailers, analyze packet information, and then re-encapsulate the data with a new data-link frame before transmission. Routers compare destination IPs, found inside packet headers, to routes in routing tables before forwarding packets. Routing tables get their routes from static routes, dynamic routing protocols, and source headers fields found in packets recieved on local interfaces. Routers can perform many different actions: implementing QoS tools, permiting/denying packets with ACLs, performing firewall functions, advertising BSSs, and more. 
 	\item[] L2 switches forward data frames within the same network segment using MAC addresses found in data-link frames. Switches learn MAC addresses from the source fields located in the frame and place this information in a table. Switches divide collision domains; unlike routers, which divide broadcast domains. L3 switches can perform both switching and routing functions.
 	\item[] Firewalls sit in the path that packets take through the network. They permit/deny traffic much like an ACL would do on a router. Firewalls are capable of watching application-layer flows with AVC, performing webpage verification on URIs, and retaining state. IPSs can compare packet flows to exploit signatures, log events, and can discard/redirct packets.
 	\item[] An AP serves as a single point of contact for every device that wants to use a BSS. An AP uses a unique BSSID that is based on the AP's own radio MAC address. APs are often connected to a DS that uplinks to a wired network.
-  \item Describe characteristics of network topology architectures
-  \item Compare physical interface and cabling types
-  \item Identify interface and cable issues (collisions, error, mismatch duplex, and/or speed)
-  \item Compare TCP to UDP
-  \item Configure and verify IPv4 addressing and subnetting
-  	\item[] Router(config-if)\# ip address \textless ip\_address\textgreater\ \textless subnet\_mask\textgreater
-  	\item[] Router\# show ip interface brief\\
-  \item Describe private IPv4 addressing
-  \item Configure and verify IPv6 address types
-  	\item[] Router(config-if)\# ipv6 address \textless IPv6\_address\textgreater/\textless prefix\_length\textgreater
-  	\item[] Router\# show ipv6 interface brief\\
-  \item Describe IPv6 addressing and prefix
-  \item Verify IP parameters for Client OS
-  \item Describe wireless principles
-  \item Explain virtualization fundamentals (server virtualization, containers, and VRFs)
-  \item Describe switching concepts\\
+  \item \textbf{Describe characteristics of network topology architectures}
+  \item \textbf{Compare physical interface and cabling types}
+  \item \textbf{Identify interface and cable issues (collisions, error, mismatch duplex, and/or speed)}
+  \item \textbf{Compare TCP to UDP}
+  \item \textbf{Configure and verify IPv4 addressing and subnetting}
+  	\item[] configure:\\
+  	Router(config-if)\# ip address \textless ip\_address\textgreater\ \textless subnet\_mask\textgreater
+  	\item[] verify:\\
+  	Router\# show ip interface brief
+  \item \textbf{Describe private IPv4 addressing}
+  \item \textbf{Configure and verify IPv6 address types}
+  	\item[] configure:
+  	Router(config-if)\# ipv6 address \textless IPv6\_address\textgreater/\textless prefix\_length\textgreater
+  	\item[] verify:
+  	Router\# show ipv6 interface brief
+  \item \textbf{Describe IPv6 addressing and prefix}
+  \item \textbf{Verify IP parameters for Client OS}
+  \item \textbf{Describe wireless principles}
+  \item \textbf{Explain virtualization fundamentals (server virtualization, containers, and VRFs)}
+  \item \textbf{Describe switching concepts}
 \end{itemize}
 
 
 
 \begin{flushleft}\textbf{Network Access}\end{flushleft}
 \begin{itemize}
-  \item Configure and verify VLANs (normal range 0-1005) spanning multiple switches
-	\item[] 1. create vlan, 2. port operational mode, 3. apply port\\
+  \item \textbf{Configure and verify VLANs (normal range 0-1005) spanning multiple switches}
+	\item[] 1. create vlans, 2. port operation, 3. apply vlans\\
 		Switch(config)\# vlan \textless vlan-id\textgreater\\
 		Switch(config-if)\# switchport mode access\\
 		Switch(config-if)\# switchport access vlan \textless vlan-id\textgreater
-  	\item[] troubleshoot: VLANs defined/active, configuration mismatches, VTP, DTP, operational mode\\
+  	\item[] verify: defined/active VLANs, VTP, access ports(data and voice)\\
   		Switch\# show vlan [brief]\\
   		Switch\# show interface interface\_type interface\_number [brief]\\
   		Switch\# show interfaces status\\
   		Switch\# show run
   	
-  \item Configure and verify interswitch connectivity
-  	\item[] 1. operational mode, 2. allowed vlans, 3. trunking standard, 4. native vlan\\
+  \item \textbf{Configure and verify interswitch connectivity}
+  	\item[] 1. operational mode, 2. allowed vlans, 3. encapsulation standard, 4. native vlan\\
   		Switch(config-if)\# switchport mode trunk\\
   		Switch(config-if)\# switchport trunk allowed vlan \textless 10,20,30\textgreater\\
   		Switch(config-if)\# switchport tunk encapsulation \textless dot1q/isl\textgreater\\
   		Switch(config-if)\# switchport trunk native vlan \textless vlan-id\textgreater
-  	\item[] troubleshoot: VLANs defined/active, configuration mismatches, VTP, DTP, operational mode \\
+  	\item[] verify: VLANs, native VLAN, VTP, DTP, operational mode \\
   		Switch\# show interface trunk\\
   		Switch\# show interfaces switchport\\
   		Switch\# show interface interface\_name interface\_number
   		
-  \item Configure and verify L2 discovery protocols (CDP/LLDP)
-  	\item[] CDP: device IDs, addresses, ports, capabilities, platform, etc.\\
-  		Switch(config-if)\# cdp enable (enable cdp on an interface)\\
-  		Switch(config)\# cdp run (how to manually enable it gloablly)\\
-  		Switch\# show cdp neighbors \textless interface\_type\textgreater \textless interface\_number\textgreater (one summary line about the neighbor)\\
-  		Switch\# show cdp neighbors detail (lists one large set of information)\\
-  		Switch\# show cdp entry name (similar to the command above, but only for the named neighbor)\\
-  		Switch\# show cdp interface \textless interface\_type \textgreater \textless interface\_number\textgreater (is cdp enabled, cdp timers)\\
-  		Switch\# show cdp (is cdp enabled, timer details)\\
-  		Switch\# show cdp traffic (advertisment stats)
-  	\item[] LLDP: Cisco devices globally enable CDP by default and disable LLDP\\
+  \item \textbf{Configure and verify L2 discovery protocols (CDP/LLDP)}
+  	\item[] CDP: multicast address 0100.0ccc.cccc\\
+  		Switch(config-if)\# cdp enable\\
+  		Switch(config)\# cdp run\\
+  		Switch(config)\# cdp timer seconds\\
+  		Switch(config)\# cdp holdtime seconds
+  	\item[] verify$\downarrow$\\
+  		Switch\# show cdp neighbors \textless interface\textgreater\\
+  		Switch\# show cdp neighbors detail\\
+  		Switch\# show cdp entry name\\
+  		Switch\# show cdp interface \textless interface\textgreater\\
+  		Switch\# show cdp\\
+  		Switch\# show cdp traffic
+  	\item[] LLDP(802.1AB): multicast address 0180.c200.000e\\
   		Switch(config)\# lldp run\\
   		Switch(config-if)\# lldp transmit\\
-  		Switch(config-if)\# lldp receive
-  \item Configure and verify (L2/L3) EtherChannel (LACP)
+  		Switch(config-if)\# lldp receive\\
+  		Switch(config)\# lldp timer seconds\\
+  		Switch(config)\# lldp holdtime seconds
+  	\item verify$\downarrow$\\
+  		Switch\# show lldp\\
+  		Switch\# show lldp traffic\\
+  		Switch\# show lldp interface\\
+  		Switch\# show lldp neighbors\\
+  		Switch\# show lldp neighbors detail\\
+  		Switch\# show lldp entry name
+  		
+  \item \textbf{Configure and verify (L2/L3) EtherChannel (LACP)}
 	\item[] Manual Configuration:\\
 		Switch(config-if-range)\# channel-group 1 mode on
 		Switch(config)\# port-channel load-balance method (src. and or dest. MACs/IPs/port numbers)
 	\item[] Dynamic Congifuration:\\
 		Switch(config-if-range)\# channel-group 1 mode \textless desirable/auto\textgreater (PAgP)\\
 		Switch(config-if-range)\# channel-group 1 mode \textless active/passive\textgreater (LACP)
-	\item[] troubleshoot: speed, duplex, operational mode, VLANs, Spanning Trees\\
+	\item[] verify: speed, duplex, operational mode, VLANs, STP\\
 		Switch\# show etherchannel summary\\
 		Switch\# show interfaces status
-	\item[] L3 Etherchannel configuration is similar to L2 configuration however:\\
+	\item[] L3 Etherchannel configuration is similar to L2 configuration:\\
 		1. each physical port needs to be a routed port (no switchport command)\\
-		2. the actually channel needs to be a routed port with an IP and mask\\
-  \item Interpret basic operations of Rapid PVST+ Spanning Tree Protocol
-  \item Describe Cisco Wireless Architectures and AP modes
-  \item Describe physical infrastructure connections of WLAN components (AP, WLC, access/trunk ports, and LAG)
-  \item Describe network device management access (Telnet, SSH, HTTP, HTTPS, console, TACACS+/RADIUS, and cloud managed)
-  \item Interpret the wireless LAN GUI configuration for client connectivity, such as WLAN creation, security settings, QoS profiles, and advanced settings\\
+		2. also the actuall channel needs to be a routed port with an IP and mask\\
+  \item \textbf{Interpret basic operations of Rapid PVST+ Spanning Tree Protocol}
+  \item \textbf{Describe Cisco Wireless Architectures and AP modes}
+  \item \textbf{Describe physical infrastructure connections of WLAN components (AP, WLC, access/trunk ports, and LAG)}
+  \item \textbf{Describe network device management access (Telnet, SSH, HTTP, HTTPS, console, TACACS+/RADIUS, and cloud managed)}
+  \item \textbf{Interpret the wireless LAN GUI configuration for client connectivity, such as WLAN creation, security settings, QoS profiles, and advanced settings}\\
 \end{itemize}
 
 
 
 \begin{flushleft}\textbf{IP Connectivity}\end{flushleft}
 \begin{itemize}
-  \item Interpret the compnents of routing table
-  \item Determine how a router makes a forwarding decision by default
-  \item Configure and verify IPv4 and IPv6 static routing
+  \item \textbf{Interpret the compnents of routing table}
+  \item \textbf{Determine how a router makes a forwarding decision by default}
+  \item \textbf{Configure and verify IPv4 and IPv6 static routing}\\
+  	NOTE: using the link-local address as the next hop address is ambigious you must include the outgoing-interface beforehand\\
+  	NOTE: IOS allows you to configure the ipv6 route command using only the outgoing-interface parameter, without listing a next-hop address. The router will accept the command; however, if that outgoing interface happens to be an Ethernet interface, the router cannot successfully forward IPv6 packets using the route.
   	\item[] Default routes are used when a packet's destination address does not match any routes, but you do not want the router to discard a packet that it otherwise would.\\
-  		Router(config)\# ip route 0.0.0.0 0.0.0.0 interface\_name interface\_number\\
+  		Router(config)\# ip route 0.0.0.0 0.0.0.0 \textless interface\textgreater\\
+  		Router(config)\# ipv6 router ::/0 \textless interface\textgreater
   	\item[] Network routes define a route to an entire subnet.\\
   		Router(config)\# ip route 172.16.2.0 255.255.255.0 s0/0/0\\
-  		Router(config)\# ip route 172.16.3.0 255.255.255.0 172.16.5.3
+  		Router(config)\# ip route 172.16.3.0 255.255.255.0 172.16.5.3\\
+  		Router(config)\# ipv6 route 2001:db8:1111:2::/64 s0/0/0\\
   	\item[] Host routes match a single IP. An engineer may want to route most packets to some subnet through one route but packets destined for a specific host through another route.\\
-  		Router(config)\# ip route 10.1.1.9 255.255.255.255 10.9.9.9
+  		Router(config)\# ip route 10.1.1.9 255.255.255.255 10.9.9.9\\
+  		Router(config)\# ipv6 router 2001:db8:1111:2::22/128 s0/0/0 fe80::ff:fe00:2
   	\item[] Floating static routes are used when when a primary route fails.\\
-  		Router(config)\# ip route 172.16.2.0 255.255.255.0 172.16.5.3 130
-  \item Configure and verify single area OSPFv2
+  		Router(config)\# ip route 172.16.2.0 255.255.255.0 172.16.5.3 130\\
+  		Router(config)\# ipv6 route 2001:db8:1::/64 2001:db8:2::1 200
+  		
+  \item \textbf{Configure and verify single area OSPFv2}
   	\item[] OSPF Configuration Mode:\\
   		Router(config)\# router ospf \textless 1-65535\textgreater\\
   		Router(config-router)\# router-id 1.1.1.1 (OPTIONAL)\\
@@ -128,52 +154,228 @@
   	\item[] Indirect Configuration Through Interface Mode:\\
   		Router(config-if)\# ip address 10.1.1.1 255.255.255.0\\
   		Router(config-if)\# ip ospf 1 area 0
-  	\item[] Show commands:
-  \item Describe the purpose, functions, and concepts of first hop redundancy protocols\\
+  	\item[] Passive interfaces do not send Hellos but information about the connected subnet will still be advertised elsewhere.\\
+  		Router(config-router)\# passive-interface \textless interface\textgreater
+  	\item[] OSPF default routes work like normal default routes, but can be advertised via OSPF\\
+  		Router(config-router)\# default-information originate\\
+  	\item[] OSPF cost = reference / bandwidth\\
+  		Router(config-if)\# ip ospf cost cost (explicitly set cost value 1-65535)\\
+  		Router(config-router)\# auto-cost reference (alters the cost calulation)\\
+  		Router(config-if)\# speed 100\\
+  		(affects the actual speed at which data is transmitted an recieved on the interface)\\
+  		Router(config-if)\# bandwidth 10000\\
+  		(in scenarios where the actual bandwidth of the interface differs from the default assumption made by the routing protocol)\\
+  		Router(config-if)\# clock\\
+  		(configured on the DCE end of a serial link to provide clocking for the line)\\
+  	\item[] OSPF route summarization involves aggregating multiple contiguous network addresses into a single summary route advert.\\
+  		NOTE: Route summarization should be done at the netwrok boundary to avoid potential routing issues. Also, make sure that summarized routes cover all the individual routes being summarized.\\
+  		Router(config-router)\# area 0 range \textless IP\_address\textgreater \textless subnet\_mask\textgreater\\
+  	\item[] Routing Black Holes:\\
+  		A routing black hole occurs when a router receives traffic for a destination network but does not have a valid route to forward that traffic. This can happen due to various reasons, including misconfigured routes, unreachable next hops, or route summarization that omits specific routes. When a router encounters a routing black hole, it frops the packets, resulting in loss of connectivity to the affected destination.
+  	\item[] Suboptimal Routing Decisions:\\
+  		Suboptimal routing decisions refer to situations where routers select paths that are not the most efficient or optimal routes to reach a destination. This can occur due to factos such as unequal cost load balancing, asymmetric routing, or inefficient routing protocols. Suboptimal routing decisions can lead to increased latency, congestion, and subpar network performance.
+  		
+  	\item[] verify: MTU, areas, network types, timers, neighbor states/roles, reference bandwidth, authentication\\
+  		Router(config)\# show run (config)\\
+  		Router(config)\# show ip protocols (config)\\
+  		
+  		Router(config)\# show ip ospf interface (enabled interfaces)\\
+  		Router(config)\# show ip ospf interface \textless interface\textgreater (enabled interfaces)\\
+  		Router(config)\# show ip ospf interface brief (enabled interfaces)\\
+  		
+  		Router(config)\# show ip ospf neighbor (neighbors)
+  		Router(config)\# show ip ospf neighbor \textless interface\textgreater (neighbors)\\
+  		
+  		Router(config)\# show ip ospf database (lsdb)\\
+  		
+  		Router(config)\# show ip ospf rib (rib)\\
+  		
+  		Router(config)\# show ip route (routes)\\
+  		Router(config)\# show ip route ospf (routes)\\
+  		Router(config)\# show ip route subnet mask (routes)\\
+  		Router(config)\# show ip route | section subnet (route)
+  \item \textbf{Describe the purpose, functions, and concepts of first hop redundancy protocols}\\
 \end{itemize}
 
 
 
 \begin{flushleft}\textbf{IP Services}\end{flushleft}
 \begin{itemize}
-  \item Configure and verify inside source NAT using static and pools
-  \item Configure and verify NTP operating in a client and server mode
-  \item Explain the role of DHCP and DNS within the network
-  \item Explain the function of SNMP in network operations
-  \item Describe the use of syslog features including facilities and levels
-  \item Configure and verify DHCP client and relay
-  \item Explain the forwarding per-hop behavior (PHB) for QoS, such as classification, marking, queuing, congestion, policing, and shaping
-  \item Configure network devices for remote access using SSH
-  \item Describe the capabilities and functions of TFTP/FTP in the network\\
+  \item \textbf{Configure and verify inside source NAT using static and pools}
+  	\item[] Static NAT\\
+		Router(config-if)\# ip nat inside\\
+		Router(config-if)\# ip nat outside\\
+		Router(config)\# ip nat inside source static \textless inside\-local\textgreater \textless inside\-local\textgreater
+	\item[] Dynamic NAT\\
+		Router(config)\# ip nat pool mypool 203.0.113.20 203.0.113.30 netmask 255.255.255.0\\
+		Router(config)\# access-list 1 permit 192.168.1.0 0.0.0.255\\
+		Router(config)\# ip nat inside source list 1 pool mypool\\
+	\item[] verify: interfaces, address ranges, acl, hit/misses, routes to destinations$\downarrow$\\
+		R1\# show access-lists\\
+		R1\# show ip nat translations [verbose]\\
+		R1\# show ip nat statistics\\
+		R1\# show ip route\\
+		R1\# show run\\
+		R1\# show interfaces \textless interface\textgreater
+		
+  \item \textbf{Configure and verify NTP operating in a client and server mode}
+  	\item[] software clock$\downarrow$\\
+		Router\# clock set hh:mm:ss {day|month} {month|day} year
+	\item[] hardware clock$\downarrow$\\
+		Router\# calendar set hh:mm:ss {day|month} {day|month} year
+	\item[] timezones$\downarrow$\\
+		Router(config)\# clock timezone name hours-offset [minutes-offset]
+	\item[] daylight savings$\downarrow$\\
+		Router(config)\# clock summer-time recurring name start end [offset]
+	\item[] NTP uses UTC time standard to sync network devices\\
+		R1(config)\# ntp update-calendar\\
+		R1(config)\# interface loopback0\\
+		R1(config-if)\# ip address 10.1.1.1 255.255.255.255\\
+		R1(config)\# ntp source loopback 0\\
+		R1(config)\# ntp master \textless 1-15\textgreater\\
+		R2(config)\# ntp server 10.1.1.1 [prefer]\\
+		R2(config)\# ntp peer 10.0.23.3\\
+		R3(config)\# ntp peer 10.0.23.2\\
+		R3(config)\# ntp authenticate\\
+		R3(config)\# ntp authentication-key key-number md5 key\\
+		R3(config)\# ntp trusted-key key-number\\
+		R3(config)\# ntp server 10.1.1.1 key key-number
+	\item[] verify $\downarrow$\\
+		Router\# show ntp associations\\
+		(* sys.peer, \# selected, + candidate, - outlyer, x falseticker, ~ configured)\\
+		Router\# show ntp status
+  \item \textbf{Explain the role of DHCP and DNS within the network}
+  \item \textbf{Explain the function of SNMP in network operations}
+  \item \textbf{Describe the use of syslog features including facilities and levels}
+  \item \textbf{Configure and verify DHCP client and relay}
+  	\item[] DHCP relay is used to help move DHCP messages in/out of a segment\\
+		Router(config-if)\# ip helper-address 192.168.1.100
+	\item[] show commands $\downarrow$\\
+		show ip dhcp binding\\
+		show ip dhcp pool\\
+		show ip dhcp server statistics\\
+		show ip dhcp relay\\
+		ipconfig or ifconfig (verify clients DHCP information)
+  \item \textbf{Explain the forwarding per-hop behavior (PHB) for QoS, such as classification, marking, queuing, congestion, policing, and shaping}
+  \item \textbf{Configure network devices for remote access using SSH}
+  	\item[] 1. enable SSH 2. create user accounts 3. set parameters 4. access control (OPTIONAL)\\
+		Router(config)\# crypto key generate rsa\\
+		Router(config)\# username \textless username\textgreater priviledge 15 secret \textless pass\textgreater\\
+		Router(config)\# ip ssh version 2\\
+		Router(config)\# ip ssh time-out 120\\
+		Router(config)\# ip ssh authentication-retries 3
+	\item[] verify by attempting a remote login\\
+		Router\# show run | include ssh\\
+		Router\# show ip ssh
+  \item \textbf{Describe the capabilities and functions of TFTP/FTP in the network}
 \end{itemize}
 
 
 
 \begin{flushleft}\textbf{Security Fundamentals}\end{flushleft}
 \begin{itemize}
-  \item Define key security concepts (threats, vulnerabilities, exploits, and mitigation techniques)
-  \item Describe security program elements (user awareness, training, and physical access control)
-  \item Configure and verify device access control using local passwords
-  \item Describe security password policies elements, such as management, complexity, and password alternatives (multifactor authentication, certificates, and biometrics)
-  \item Describe IPsec remote access and site-to-site VPNs
-  \item Configure and verify access control lists
-  \item Configure and verify Layer 2 security features (DHCP snooping, dynamic ARP inspection, and port security)
-  \item Compare authentication, authorization, and accounting concepts
-  \item Describe wireless security protocols (WPA, WPA2, and WPA3)
-  \item Configure and verify WLAN within the GUI using WPA2 PSK\\
+  \item \textbf{Define key security concepts (threats, vulnerabilities, exploits, and mitigation techniques)}
+  \item \textbf{Describe security program elements (user awareness, training, and physical access control)}
+  \item \textbf{Configure and verify device access control using local passwords}
+  	\item[] configure$\downarrow$
+  		Router(config)\# service password-encryption\\
+  		
+  		Router(config)\# enable secret \textless password\textgreater\\
+  		
+  		Router(config)\# line console 0\\
+  		Router(config-line)\# password \textless password\textgreater\\
+  		Router(config-line)\# login\\
+  		
+  		Router(config)\# line vty 0 15\\
+  		Router(config-line)\# password \textless password\textgreater\\
+  		Router(config-line)\# login
+  	\item[] verify$\downarrow$
+  		Router\# show run | include enable secret
+  		Router\# show run | include line console 0
+  		Router\# show run | include line vty 0 15
+  \item \textbf{Describe security password policies elements, such as management, complexity, and password alternatives (multifactor authentication, certificates, and biometrics)}
+  \item \textbf{Describe IPsec remote access and site-to-site VPNs}
+  \item \textbf{Configure and verify access control lists}
+  	\item[] Standard ACLs match source IP addresses only.\\
+  		R1(config)\# access-list 1 deny [host] 192.168.1.233 [log]
+  	\item[] Extended ACLs have more matching parameters.\\
+  		R1(config)\# access-list 101 permit tcp 172.16.1.0 0.0.0.255 172.16.3.0 0.0.0.255 eq 21
+  	\item[] Named ACLs have a subconfiguration mode with sequence numbers\\
+  		Router(config)\# ip access-list extended barney\\
+  		Router(config-ext-nacl)\# permit tcp host 10.1.1.2 eq www any\\
+  		Router(config-ext-nacl)\# interface serial1\\
+  		Router(config-if)\# ip access-gorup barney out
+  	\item[] verify:\\
+  		Place standard ACLs as close to the destination as possible.\\
+  		Place extended ACLs as close to the source as possible.\\
+  		Disable an ACL before altering the ACEs.
+  		
+  		
+  	\item[] NOTE: helpful arithmetic $\downarrow$\\
+  		subnet = host address \&(binary and) mask\\ 
+  		wildcard mask = limited broadcast address - subnet mask\\
+  		subnet(highend) = subnet(lowend) + wildcard\\
+  		0d $\rightarrow$ 0b $\downarrow$\\
+  		1. continue to divide by 2\\
+  		2. each division set aside the remainder\\
+  		3. once the quotient is 0, merge the remainders in reverse order
+  		0x $\rightarrow$ 0d $\downarrow$\\
+  		1. separate the digits and convert them to decimal digits\\
+  		2. multiply each digit by the respective power of 16\\
+  		3. add them\\
+  		0d $\rightarrow$ 0x $\downarrow$\\
+  		1. identify the largest power of 16 less than the decimal number\\
+  		2. continue to divide the remainders by the largest power of 16 setting the quotient aside\\
+  		3. merge remainders and convert them individually
+  		
+  \item \textbf{Configure and verify Layer 2 security features (DHCP snooping, dynamic ARP inspection, and port security)}
+  	\item[] DHCP snooping is used to prevent spurious DHCP servers\\
+  		Switch(config)\# ip dhcp snooping\\
+		Switch(config)\# ip dhcp snooping vlan \textless vlan\_id\textgreater\\
+		Switch(config-if)\# ip dhcp snooping trust
+		verify$\downarrow$\\
+		Switch\# show ip dhcp snooping\\
+		Switch\# show ip dhcp snooping binding
+  	\item[] dynamic ARP inspection is used prevent ARP spoofing/poisoning\\
+  		Switch(config)\# ip arp inspection\\
+		Switch(config)\# ip arp inspection vlan \textless vlan\_id\textgreater\\
+		Switch(config-if)\# ip arp inspection trust
+		verify$\downarrow$
+		Switch\# show ip arp inspection\\
+		Switch\# show ip arp inspection statistics\\
+		
+  	\item[] port security is used to keep unauthorized devices from accessing the network\\
+  		Switch(config-if)\# switchport port-security\\
+		Switch(config-if)\# switchport port-security maximum \textless value\textgreater\\
+		Switch(config-if)\# switchport port-security violation {shutdown | restrict | protect}\\
+		verify$\downarrow$
+		Switch\# show port-security interface \textless interface\textgreater\\
+		Switch\# show port-security [address]
+  \item \textbf{Compare authentication, authorization, and accounting concepts}
+  \item \textbf{Describe wireless security protocols (WPA, WPA2, and WPA3)}
+  \item \textbf{Configure and verify WLAN within the GUI using WPA2 PSK}
+	\item[] 1. Access the GUI
+	\item[] 2. Login
+	\item[] 3. Navigate to WLAN Settings
+	\item[] 4. Create a New WLAN Profile
+	\item[] 5. Configure WLAN Settings: SSID, security settings, pre-shared key, encryption, etc.
+	\item[] 6. Apply and Save Changes
+	\item[] 7. Verify WLAN Configuration
+	\item[] 8. Test Connectivity
+
 \end{itemize}
 
 
 
 \begin{flushleft}\textbf{Automation and Programmability}\end{flushleft}
 \begin{itemize}
-  \item Explain how automation impacts network management
-  \item Compare traditional networks with controller-based networking
-  \item Describe controller-based, software defined architecture (overlay, underlay, and fabric) 
-  \item Explain AI (generative and predictive) and machine learning in network operations
-  \item Describe characteristics of REST-based APIs (authentication types, CRUD, HTTP verbs, and data encoding)
-  \item Recognize the capabilities of configuration management mechanisms, such as Ansible and Terraform
-  \item Recognize components of JSON-encoded data\\
+  \item \textbf{Explain how automation impacts network management}
+  \item \textbf{Compare traditional networks with controller-based networking}
+  \item \textbf{Describe controller-based, software defined architecture (overlay, underlay, and fabric)} 
+  \item \textbf{Explain AI (generative and predictive) and machine learning in network operations}
+  \item \textbf{Describe characteristics of REST-based APIs (authentication types, CRUD, HTTP verbs, and data encoding)}
+  \item \textbf{Recognize the capabilities of configuration management mechanisms, such as Ansible and Terraform}
+  \item \textbf{Recognize components of JSON-encoded data}
 \end{itemize}
 
 \end{document}
