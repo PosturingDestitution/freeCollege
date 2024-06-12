@@ -19,13 +19,11 @@
   \item Automation and Programmability (10\%)\\
 \end{enumerate}
 
-
-
 \begin{flushleft}\textbf{Network Fundamentals}\end{flushleft}
 \begin{itemize}
   \item \textbf{Explain the role and function of network components}
   	\item[] Routers forward packets between computer networks (LANs and WANs), and use IP addresses to determine where a packet should go. Routers remove data-link headers and trailers, analyze packet information, and then re-encapsulate the data with a new data-link frame before transmission. Routers compare destination IPs, found inside packet headers, to routes in routing tables before forwarding packets. Routing tables get their routes from static routes, dynamic routing protocols, and source headers fields found in packets recieved on local interfaces. Routers can perform many different actions: implementing QoS tools, permiting/denying packets with ACLs, performing firewall functions, advertising BSSs, and more. 
-	\item[] L2 switches forward data frames within the same network segment using MAC addresses found in data-link frames. Switches learn MAC addresses from the source fields located in the frame and place this information in a table. Switches divide collision domains; unlike routers, which divide broadcast domains. L3 switches can perform both switching and routing functions.
+	\item[] Switches forward PDUs at layer 2 within the same network segment. Switches place new source MAC addresses, found in the header fields, into a table. This MAC-address table helps the switch make forwarding decisions. Switch ports divide collision domains; unlike router ports, which divide broadcast domains. Switches can divide broadcast domains by using VLANs, but cannot route between subnets. Switches can perform a variety of security tasks as well like: port security, DAI, DHCP snooping. L3 switches can perform both switching and routing functions.
 	\item[] Firewalls sit in the path that packets take through the network. They permit/deny traffic much like an ACL would do on a router. Firewalls are capable of watching application-layer flows with AVC, performing webpage verification on URIs, and retaining state. IPSs can compare packet flows to exploit signatures, log events, and can discard/redirct packets.
 	\item[] An AP serves as a single point of contact for every device that wants to use a BSS. An AP uses a unique BSSID that is based on the AP's own radio MAC address. APs are often connected to a DS that uplinks to a wired network.
   \item \textbf{Describe characteristics of network topology architectures}
@@ -33,16 +31,12 @@
   \item \textbf{Identify interface and cable issues (collisions, error, mismatch duplex, and/or speed)}
   \item \textbf{Compare TCP to UDP}
   \item \textbf{Configure and verify IPv4 addressing and subnetting}
-  	\item[] configure:\\
-  	Router(config-if)\# ip address \textless ip\_address\textgreater\ \textless subnet\_mask\textgreater
-  	\item[] verify:\\
-  	Router\# show ip interface brief
+  	\item[] configure: Router(config-if)\# ip address \textless ip\_address\textgreater\ \textless subnet\_mask\textgreater
+  	\item[] verify: Router\# show ip interface brief
   \item \textbf{Describe private IPv4 addressing}
   \item \textbf{Configure and verify IPv6 address types}
-  	\item[] configure:
-  	Router(config-if)\# ipv6 address \textless IPv6\_address\textgreater/\textless prefix\_length\textgreater
-  	\item[] verify:
-  	Router\# show ipv6 interface brief
+  	\item[] configure: Router(config-if)\# ipv6 address \textless IPv6\_address\textgreater/\textless prefix\_length\textgreater
+  	\item[] verify: Router\# show ipv6 interface brief
   \item \textbf{Describe IPv6 addressing and prefix}
   \item \textbf{Verify IP parameters for Client OS}
   \item \textbf{Describe wireless principles}
@@ -104,10 +98,10 @@
   		Switch\# show lldp entry name
   		
   \item \textbf{Configure and verify (L2/L3) EtherChannel (LACP)}
-	\item[] Manual Configuration:\\
-		Switch(config-if-range)\# channel-group 1 mode on
+	\item[] Manual Configuration$\downarrow$\\
+		Switch(config-if-range)\# channel-group 1 mode on\\
 		Switch(config)\# port-channel load-balance method (src. and or dest. MACs/IPs/port numbers)
-	\item[] Dynamic Congifuration:\\
+	\item[] Dynamic Congifuration$\downarrow$\\
 		Switch(config-if-range)\# channel-group 1 mode \textless desirable/auto\textgreater (PAgP)\\
 		Switch(config-if-range)\# channel-group 1 mode \textless active/passive\textgreater (LACP)
 	\item[] verify: speed, duplex, operational mode, VLANs, STP\\
@@ -138,7 +132,7 @@
   	\item[] Network routes define a route to an entire subnet.\\
   		Router(config)\# ip route 172.16.2.0 255.255.255.0 s0/0/0\\
   		Router(config)\# ip route 172.16.3.0 255.255.255.0 172.16.5.3\\
-  		Router(config)\# ipv6 route 2001:db8:1111:2::/64 s0/0/0\\
+  		Router(config)\# ipv6 route 2001:db8:1111:2::/64 s0/0/0
   	\item[] Host routes match a single IP. An engineer may want to route most packets to some subnet through one route but packets destined for a specific host through another route.\\
   		Router(config)\# ip route 10.1.1.9 255.255.255.255 10.9.9.9\\
   		Router(config)\# ipv6 router 2001:db8:1111:2::22/128 s0/0/0 fe80::ff:fe00:2
@@ -147,17 +141,17 @@
   		Router(config)\# ipv6 route 2001:db8:1::/64 2001:db8:2::1 200
   		
   \item \textbf{Configure and verify single area OSPFv2}
-  	\item[] OSPF Configuration Mode:\\
-  		Router(config)\# router ospf \textless 1-65535\textgreater\\
-  		Router(config-router)\# router-id 1.1.1.1 (OPTIONAL)\\
-  		Router(config-router)\# network \textless ip\_address\textgreater \textless network\_mask\textgreater
-  	\item[] Indirect Configuration Through Interface Mode:\\
-  		Router(config-if)\# ip address 10.1.1.1 255.255.255.0\\
-  		Router(config-if)\# ip ospf 1 area 0
+  	\item[] Direct$\downarrow$\\
+  		Router(config)\# ospf process \textless 1-65535\textgreater\\
+  		Router(config-router)\# router-id X.X.X.X (OPTIONAL)
+  		Router(config-router)\# network \textless IP\_address\textgreater \textless wildcard\textgreater area \textless area\_id\textgreater
+  	\item[] Indirect$\downarrow$\\
+  		Router(config-if)\# ip ospf process \textless 1-65535\textgreater \textless area\_id\textgreater\\
+  		Router(config-if)\# ip ospf network [type] (OPTIONAL)
   	\item[] Passive interfaces do not send Hellos but information about the connected subnet will still be advertised elsewhere.\\
   		Router(config-router)\# passive-interface \textless interface\textgreater
   	\item[] OSPF default routes work like normal default routes, but can be advertised via OSPF\\
-  		Router(config-router)\# default-information originate\\
+  		Router(config-router)\# default-information originate
   	\item[] OSPF cost = reference / bandwidth\\
   		Router(config-if)\# ip ospf cost cost (explicitly set cost value 1-65535)\\
   		Router(config-router)\# auto-cost reference (alters the cost calulation)\\
@@ -166,10 +160,10 @@
   		Router(config-if)\# bandwidth 10000\\
   		(in scenarios where the actual bandwidth of the interface differs from the default assumption made by the routing protocol)\\
   		Router(config-if)\# clock\\
-  		(configured on the DCE end of a serial link to provide clocking for the line)\\
+  		(configured on the DCE end of a serial link to provide clocking for the line)
   	\item[] OSPF route summarization involves aggregating multiple contiguous network addresses into a single summary route advert.\\
   		NOTE: Route summarization should be done at the netwrok boundary to avoid potential routing issues. Also, make sure that summarized routes cover all the individual routes being summarized.\\
-  		Router(config-router)\# area 0 range \textless IP\_address\textgreater \textless subnet\_mask\textgreater\\
+  		Router(config-router)\# area 0 range \textless IP\_address\textgreater \textless subnet\_mask\textgreater
   	\item[] Routing Black Holes:\\
   		A routing black hole occurs when a router receives traffic for a destination network but does not have a valid route to forward that traffic. This can happen due to various reasons, including misconfigured routes, unreachable next hops, or route summarization that omits specific routes. When a router encounters a routing black hole, it frops the packets, resulting in loss of connectivity to the affected destination.
   	\item[] Suboptimal Routing Decisions:\\
