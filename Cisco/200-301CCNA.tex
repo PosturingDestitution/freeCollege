@@ -10,24 +10,16 @@
 
 \maketitle
 
-information compiled from:
-\begin{itemize}
-\item\textit{CCNA 200-301 Volume 1\&2 Official Cert Guide: Advance your IT career with hands-on learning} by Wendell Odom
-\item https://www.youtube.com/@JeremysITLab
-\item https://study-ccna.com/
-\item https://chatgpt.com/\\
-\end{itemize}
-
 \begin{enumerate}
-  \item Network Fundamentals (20\%)
-  \item Network Access (20\%)
-  \item IP Connectivity (25\%)
-  \item IP Services (10\%)
-  \item Security Fundamentals (15\%)
-  \item Automation and Programmability (10\%)\\
+  \item Network Fundamentals (1-13)
+  \item Network Access (13-22)
+  \item IP Connectivity (22-28)
+  \item IP Services (28-38)
+  \item Security Fundamentals (38-51)
+  \item Automation and Programmability (51-56)
 \end{enumerate}
 
-\begin{flushleft}\textbf{Network Fundamentals}\end{flushleft}
+\section{Network Fundamentals}
 \begin{itemize}
   \item \textbf{Explain the role and function of network components}
   	\item[] Routers forward packets between computer networks (LANs and WANs), and use IP addresses to determine where a packet should go. Routers remove data-link headers and trailers, analyze packet information, and then re-encapsulate the data with a new data-link frame before transmission. Routers compare destination IPs, found inside packet headers, to routes in routing tables before forwarding packets. Routing tables get their routes from static routes, dynamic routing protocols, and source headers fields found in packets recieved on local interfaces. Routers can perform many different actions: implementing QoS tools, permiting/denying packets with ACLs, performing firewall functions, advertising BSSs, and more. 
@@ -190,7 +182,7 @@ information compiled from:
 
 
 
-\begin{flushleft}\textbf{Network Access}\end{flushleft}
+\section{Network Access}
 \begin{itemize}
   \item \textbf{Configure and verify VLANs (normal range 0-1005) spanning multiple switches}
 	\item[] 1. create vlans, 2. port operation, 3. apply vlans\\
@@ -286,7 +278,7 @@ information compiled from:
 
 
 
-\begin{flushleft}\textbf{IP Connectivity}\end{flushleft}
+\section{IP Connectivity}
 \begin{itemize}
   \item \textbf{Interpret the compnents of routing table}
   	\item[] Routing protocol codes are identifiers used by routing protocols to signify the source or type of the route entry. Common codes include "C" for directly connected routes, "S" for static routes, "D" for EIGRP (Enhanced Interior Gateway Routing Protocol), "O" for OSPF (Open Shortest Path First), "R" for RIP (Routing Information Protocol), and "B" for BGP (Border Gateway Protocol). Understanding these codes helps identify how routes are learned and maintained within the routing table, providing insights into the network's routing behavior and dynamics.
@@ -376,7 +368,7 @@ information compiled from:
 
 
 
-\begin{flushleft}\textbf{IP Services}\end{flushleft}
+\section{IP Services}
 \begin{itemize}
   \item \textbf{Configure and verify inside source NAT using static and pools}
   	\item[] Static NAT\\
@@ -481,7 +473,7 @@ information compiled from:
 
 
 
-\begin{flushleft}\textbf{Security Fundamentals}\end{flushleft}
+\section{Security Fundamentals}
 \begin{itemize}
   \item \textbf{Define key security concepts (threats, vulnerabilities, exploits, and mitigation techniques)}
   	\item[] Threats refer to potential dangers or malicious events that can compromise the confidentiality, integrity, or availability of information or systems.\\
@@ -666,7 +658,7 @@ information compiled from:
 
 
 
-\begin{flushleft}\textbf{Automation and Programmability}\end{flushleft}
+\section{Automation and Programmability}
 \begin{itemize}
   \item \textbf{Explain how automation impacts network management}
   	\item[] Automation allows a network to be changed all at once. This minimizes the amount of times humans have to interface with the network. This provides consistency which will decrease the amount of misconfigured devices and thus improve security. Templates and policies can be implemented up-front to comply with organizational standards and industry best practices. Automated tools can be implemented for monitoring and maintenance these tools continuously track network performance metrics and detect anomalies by integrating ML. ML can also be used to imrpove the turn-around time once certain metrics are observed. This saves time, money, and improves the QoE for users of the network. Automation simplifies audit processes by generating comprehensive reports on network configurations, access controls, and compliance with regulatory requirements, facilitating easier compliance management. Since automation reduces the need for manual, repetitive task network administration time can be properly allocated to the most important strategic initiatives.
@@ -735,7 +727,14 @@ information compiled from:
 	\item[] booleans are either 'true' or 'false' 	
 	\item[] arrays are on ordered collection of values, enclosed in square brackets '[]'. Arrays can contain values of any JSON data type, including other arrays (nested arrays).
 	\item[] Null represents an empty or null value.
-	\item[] NOTE: JSON itself is not a programming language and does not have the extensive type system that programming languages do (such as strongly-typed or dynamically-typed systems). Instead, JSON defines a set of data structures and rules for representing data in a way that is both human-readable and machine-parseable. This simplicity and flexibility make JSON widely used for data interchange between systems, especially in web dev and APIs.
+	\item[] NOTE: JSON itself is not a programming language and does not have the extensive type system that programming languages do (such as strongly-typed or dynamically-typed systems). Instead, JSON defines a set of data structures and rules for representing data in a way that is both human-readable and machine-parseable. This simplicity and flexibility make JSON widely used for data interchange between systems, especially in web dev and APIs.\\\\\\\\\\\\\\\\
 \end{itemize}
 
+The information found in this document was obtained from the following resources:
+\begin{itemize}
+\item\textit{CCNA 200-301 Volume 1\&2 Official Cert Guide: Advance your IT career with hands-on learning} by Wendell Odom
+\item https://www.youtube.com/@JeremysITLab
+\item https://study-ccna.com/
+\item https://chatgpt.com/\\
+\end{itemize}
 \end{document}
